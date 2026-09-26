@@ -18,11 +18,11 @@ export function TaskFormModal({
   const [dueDate, setDueDate] = useState(todayKey());
   const [important, setImportant] = useState(false);
 
-  const submit = (event: FormEvent) => {
+  const submit = async (event: FormEvent) => {
     event.preventDefault();
     if (!title.trim()) return;
 
-    addTask({ title: title.trim(), dueDate, important });
+    await addTask({ title: title.trim(), dueDate, important });
     setTitle("");
     setDueDate(todayKey());
     setImportant(false);

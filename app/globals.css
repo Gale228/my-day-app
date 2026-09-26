@@ -645,7 +645,7 @@ a {
   display: grid;
   place-items: center;
   color: #595660;
-  font-size: 10px;
+  font-size: 12px;
   transition: background .2s ease, color .2s ease;
 }
 
@@ -1205,4 +1205,117 @@ a {
     animation-duration: .01ms !important;
     animation-iteration-count: 1 !important;
   }
+}
+
+/* ===== Авторизация и аккаунт ===== */
+.auth-page {
+  min-height: 100svh;
+  padding: 28px 18px;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 78% 14%, rgba(140,117,232,.16), transparent 24rem),
+    radial-gradient(circle at 16% 84%, rgba(101,169,133,.12), transparent 25rem),
+    var(--bg);
+}
+
+.auth-card {
+  width: min(460px, 100%);
+  padding: 34px;
+  border: 1px solid rgba(255,255,255,.9);
+  border-radius: 30px;
+  background: rgba(255,255,255,.82);
+  backdrop-filter: blur(26px);
+  box-shadow: 0 30px 90px rgba(45,39,64,.12);
+}
+
+.auth-card-wide { width: min(620px, 100%); }
+.auth-logo {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  color: #fff;
+  background: linear-gradient(145deg, #9c89ed, #7460d7);
+  box-shadow: 0 12px 28px rgba(112,89,208,.24);
+}
+.auth-heading { margin: 24px 0 22px; }
+.auth-heading h1 {
+  margin: 7px 0 8px;
+  font-size: clamp(30px, 6vw, 42px);
+  letter-spacing: -.045em;
+  line-height: 1.05;
+}
+.auth-heading p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.65; }
+.auth-form { display: grid; gap: 15px; }
+.auth-two-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.auth-input-icon { position: relative; }
+.auth-input-icon > svg { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--muted); }
+.auth-input-icon input { width: 100%; padding-left: 43px !important; }
+.auth-submit {
+  min-height: 50px;
+  margin-top: 3px;
+  border: 0;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  color: #fff;
+  font-weight: 800;
+  background: linear-gradient(145deg, #8f7ae8, #7059d0);
+  box-shadow: 0 12px 26px rgba(112,89,208,.18);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.auth-submit:hover { transform: translateY(-1px); box-shadow: 0 16px 30px rgba(112,89,208,.24); }
+.auth-switch { margin: 22px 0 0; text-align: center; color: var(--muted); font-size: 12px; }
+.auth-switch a { color: var(--lavender-deep); font-weight: 800; }
+.auth-message { margin: 0 0 16px; padding: 12px 14px; border-radius: 14px; font-size: 11px; line-height: 1.5; }
+.auth-message.error { color: #93464d; background: #f9e8e9; border: 1px solid rgba(201,93,102,.15); }
+.auth-message.success { color: #397456; background: var(--green-soft); border: 1px solid rgba(101,169,133,.15); }
+
+.sidebar-footer-stack { margin-top: auto; display: grid; gap: 10px; }
+.sidebar-footer-stack .sidebar-tip { margin-top: 0; }
+.logout-button {
+  width: 100%;
+  min-height: 42px;
+  padding: 0 13px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--muted);
+  background: rgba(255,255,255,.52);
+  font-size: 11px;
+  font-weight: 750;
+  transition: color .2s ease, background .2s ease;
+}
+.logout-button:hover { color: var(--danger); background: rgba(255,255,255,.85); }
+.settings-side-stack { display: grid; gap: 16px; align-self: start; }
+.account-card { display: flex; align-items: center; gap: 14px; }
+.account-avatar {
+  width: 52px;
+  height: 52px;
+  flex: 0 0 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  color: var(--lavender-deep);
+  background: var(--lavender-soft);
+  font-size: 20px;
+  font-weight: 850;
+}
+.account-card h2 { margin: 5px 0; font-size: 18px; }
+.account-email { margin: 0; display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 10px; }
+.mobile-logout { display: none; margin-left: auto; }
+.sync-note { display: flex; align-items: center; gap: 8px; }
+
+@media (max-width: 760px) {
+  .auth-card { padding: 24px 20px; border-radius: 24px; }
+  .auth-two-fields { grid-template-columns: 1fr; }
+  .mobile-logout { display: block; }
+  .mobile-logout .logout-button { width: 42px; padding: 0; justify-content: center; }
+  .mobile-logout .logout-button span { display: none; }
 }

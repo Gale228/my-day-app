@@ -25,12 +25,12 @@ export function ExpenseFormModal({
     [categoryId, categories],
   );
 
-  const submit = (event: FormEvent) => {
+  const submit = async (event: FormEvent) => {
     event.preventDefault();
     const numberAmount = Number(amount.replace(",", "."));
     if (!title.trim() || !numberAmount || numberAmount <= 0 || !selectedCategory) return;
 
-    addExpense({
+    await addExpense({
       title: title.trim(),
       amount: numberAmount,
       categoryId: selectedCategory,
@@ -43,10 +43,10 @@ export function ExpenseFormModal({
     onClose();
   };
 
-  const createCategory = () => {
+  const createCategory = async () => {
     if (!newCategory.trim()) return;
-    const id = addCategory(newCategory.trim());
-    setCategoryId(id);
+    const id = await addCategory(newCategory.trim());
+    if (id) setCategoryId(id);
     setNewCategory("");
   };
 

@@ -1,22 +1,23 @@
 "use client";
 
-import { Plus, ShieldCheck, Trash2 } from "lucide-react";
+import { Cloud, Mail, Plus, ShieldCheck, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { useApp } from "@/components/app-provider";
+import { LogoutButton } from "@/components/logout-button";
 import { PageTransition } from "@/components/page-transition";
 import { Button } from "@/components/ui";
 
 const emojiChoices = ["✨", "🍜", "🚕", "🛍️", "🏠", "🎮", "☕", "💻", "🎁", "💊"];
 
 export default function SettingsPage() {
-  const { categories, addCategory, deleteCategory } = useApp();
+  const { categories, addCategory, deleteCategory, userName, userEmail } = useApp();
   const [name, setName] = useState("");
   const [icon, setIcon] = useState("✨");
 
-  const create = () => {
+  const create = async () => {
     if (!name.trim()) return;
-    addCategory(name.trim(), icon);
-    setName("");
+    const id = await addCategory(name.trim(), icon);
+    if (id) setName("");
   };
 
   return (
@@ -25,7 +26,7 @@ export default function SettingsPage() {
         <div>
           <span className="eyebrow">Персонализация</span>
           <h1>Настройки</h1>
-          <p>Пока здесь находятся категории. Позже добавим темы, аккаунт и синхронизацию.</p>
+          <p>Аккаунт, синхронизация и категории расходов.</p>
         </div>
       </header>
 
@@ -79,16 +80,28 @@ export default function SettingsPage() {
           </div>
         </section>
 
-        <aside className="panel privacy-card">
-          <div className="privacy-icon"><ShieldCheck size={24} /></div>
-          <span className="eyebrow">Первая версия</span>
-          <h2>Данные остаются у тебя</h2>
-          <p>
-            Сейчас задачи и расходы сохраняются в localStorage браузера. Серверу ничего не отправляется.
-          </p>
-          <div className="privacy-note">
-            Следующий этап — аккаунт и собственная база данных для синхронизации между устройствами.
-          </div>
+        <aside className="settings-side-stack">
+          <section className="panel account-card">
+            <div className="account-avatar">{userName?.slice(0, 1).toUpperCase() || "Я"}</div>
+            <div>
+              <span className="eyebrow">Аккаунт</span>
+              <h2>{userName || "Пользователь"}</h2>
+              <p className="account-email"><Mail size={14} /> {userEmail}</p>
+            </div>
+            <div className="mobile-logout"><LogoutButton /></div>
+          </section>
+
+          <section className="panel privacy-card">
+            <div className="privacy-icon"><ShieldCheck size={24} /></div>
+            <span className="eyebrow">Облако</span>
+            <h2>Данные синхронизируются</h2>
+            <p>
+              Задачи, расходы и категории теперь сохраняются в Supabase и привязаны к текущему аккаунту.
+            </p>
+            <div className="privacy-note sync-note">
+              <Cloud size={16} /> На другом устройстве достаточно открыть сайт и войти под тем же email.
+            </div>
+          </section>
         </aside>
       </div>
     </PageTransition>

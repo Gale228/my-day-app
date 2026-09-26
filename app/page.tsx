@@ -15,7 +15,7 @@ import { useApp, useTodayKey } from "@/components/app-provider";
 import { formatLongDate, formatMoney } from "@/lib/date";
 
 export default function DashboardPage() {
-  const { tasks, expenses, hydrated } = useApp();
+  const { tasks, expenses, hydrated, userName } = useApp();
   const today = useTodayKey();
   const [taskModal, setTaskModal] = useState(false);
   const [expenseModal, setExpenseModal] = useState(false);
@@ -52,7 +52,7 @@ export default function DashboardPage() {
       <header className="page-header dashboard-header">
         <div>
           <span className="eyebrow">{formatLongDate()}</span>
-          <h1>Доброе утро, Андрей</h1>
+          <h1>Доброе утро, {userName || "друг"}</h1>
           <p>Спокойно разложим день по полочкам.</p>
         </div>
         <div className="header-actions">
