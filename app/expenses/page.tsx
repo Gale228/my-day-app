@@ -1,6 +1,6 @@
 "use client";
 
-import { CircleDollarSign, Plus, WalletCards } from "lucide-react";
+import { BarChart3, CircleDollarSign, Plus, WalletCards } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useApp } from "@/components/app-provider";
 import { ExpenseFormModal } from "@/components/expense-form";
@@ -8,6 +8,7 @@ import { ExpenseList } from "@/components/expense-list";
 import { PageTransition } from "@/components/page-transition";
 import { Button } from "@/components/ui";
 import { formatMoney, todayKey } from "@/lib/date";
+import Link from "next/link";
 
 export default function ExpensesPage() {
   const { expenses, categories } = useApp();
@@ -27,7 +28,8 @@ export default function ExpensesPage() {
   const categoryTotals = useMemo(() => {
     const totals = new Map<string, number>();
     monthExpenses.forEach((expense) => {
-      totals.set(expense.categoryId, (totals.get(expense.categoryId) ?? 0) + expense.amount);
+      const id = expense.categoryId ?? "none";
+      totals.set(id, (totals.get(id) ?? 0) + expense.amount);
     });
 
     return [...totals.entries()]
@@ -47,9 +49,7 @@ export default function ExpensesPage() {
           <h1>Расходы</h1>
           <p>Записывай траты по ходу дня и смотри, куда уходит бюджет.</p>
         </div>
-        <Button onClick={() => setOpen(true)}>
-          <Plus size={18} /> Добавить расход
-        </Button>
+        <div className="header-actions"><Link className="button button-secondary" href="/analytics"><BarChart3 size={18} /> Графики</Link><Button onClick={() => setOpen(true)}><Plus size={18} /> Добавить расход</Button></div>
       </header>
 
       <section className="stats-grid expense-stats">

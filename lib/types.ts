@@ -21,3 +21,38 @@ export type Expense = {
   date: string;
   createdAt: string;
 };
+
+export type Goal = {
+  id: string;
+  title: string;
+  description: string;
+  targetValue: number | null;
+  currentValue: number;
+  unit: string;
+  targetDate: string | null;
+  completed: boolean;
+  createdAt: string;
+};
+
+export type Habit = {
+  id: string;
+  title: string;
+  icon: string;
+  targetPerWeek: number;
+  createdAt: string;
+};
+
+export type HabitCompletion = {
+  id: string;
+  habitId: string;
+  date: string;
+};
+
+export type Note = {
+  id: string;
+  title: string;
+  content: string;
+  pinned: boolean;
+  createdAt: string;
+  updatedAt: string;
+};
