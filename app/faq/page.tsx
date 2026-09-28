@@ -20,6 +20,16 @@ const sections: FaqSection[] = [
     ],
   },
   {
+    title: "Общее пространство",
+    description: "Совместные дела, покупки и бюджет для пары или семьи.",
+    items: [
+      { question: "Как связать два аккаунта?", answer: "Один пользователь открывает раздел «Общее» и создаёт пространство. Приложение покажет код приглашения из 8 символов. Второй пользователь вводит этот код в своём аккаунте и присоединяется." },
+      { question: "Личные задачи и расходы становятся общими?", answer: "Нет. Личные разделы остаются привязаны только к твоему user_id. Общими становятся только записи, созданные внутри раздела «Общее»." },
+      { question: "Что можно вести вместе?", answer: "В общем пространстве есть совместные задачи, список покупок, общие расходы и месячный бюджет. Изменения синхронизируются между участниками через Supabase." },
+      { question: "Как пригласить второго пользователя?", answer: "Открой «Общее» и нажми на карточку с кодом приглашения — код скопируется. Передай его второму пользователю, чтобы он ввёл его в форме присоединения." },
+    ],
+  },
+  {
     title: "Задачи",
     description: "Планирование дел и приоритетов.",
     items: [
@@ -137,7 +147,7 @@ export default function FaqPage() {
 
       <div className="faq-mini-grid">
         <article className="panel faq-mini-card"><Smartphone size={20} /><div><strong>PWA готово</strong><span>Установка на телефон после публикации по HTTPS</span></div></article>
-        <article className="panel faq-mini-card"><ShieldCheck size={20} /><div><strong>Личные данные защищены</strong><span>Каждый аккаунт видит только свои записи</span></div></article>
+        <article className="panel faq-mini-card"><ShieldCheck size={20} /><div><strong>Личные данные защищены</strong><span>Личное изолировано, общее доступно только участникам</span></div></article>
         <article className="panel faq-mini-card"><Sparkles size={20} /><div><strong>{questionCount} {questionWord(questionCount)} найдено</strong><span>{query ? "По текущему запросу" : "Во всех разделах FAQ"}</span></div></article>
       </div>
 

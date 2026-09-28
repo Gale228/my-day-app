@@ -14,6 +14,7 @@ import {
   Repeat2,
   Settings,
   Sparkles,
+  UsersRound,
 } from "lucide-react";
 import { motion } from "motion/react";
 import type { ReactNode } from "react";
@@ -25,6 +26,7 @@ const navigation = [
   { href: "/", label: "Главная", icon: Home },
   { href: "/tasks", label: "Дела", icon: CheckSquare2 },
   { href: "/expenses", label: "Расходы", icon: CircleDollarSign },
+  { href: "/shared", label: "Общее", icon: UsersRound },
   { href: "/goals", label: "Цели", icon: Goal },
   { href: "/habits", label: "Привычки", icon: Repeat2 },
   { href: "/notes", label: "Заметки", icon: NotebookPen },
@@ -37,7 +39,7 @@ const mobileNavigation = [
   { href: "/", label: "Главная", icon: Home },
   { href: "/tasks", label: "Дела", icon: CheckSquare2 },
   { href: "/expenses", label: "Расходы", icon: CircleDollarSign },
-  { href: "/habits", label: "Привычки", icon: Repeat2 },
+  { href: "/shared", label: "Общее", icon: UsersRound },
   { href: "/more", label: "Ещё", icon: MoreHorizontal },
 ];
 
@@ -67,6 +69,11 @@ export function AppShell({ children }: { children: ReactNode }) {
             <div><strong>Мой день</strong><span>личное пространство</span></div>
           </div>
 
+          <div className="space-switcher" aria-label="Режим пространства">
+            <Link href="/" className={!pathname.startsWith("/shared") ? "active" : ""}>Моё</Link>
+            <Link href="/shared" className={pathname.startsWith("/shared") ? "active" : ""}><UsersRound size={14} /> Общее</Link>
+          </div>
+
           <nav className="desktop-nav" aria-label="Основная навигация">
             {navigation.map((item) => <NavigationLink key={item.href} {...item} />)}
           </nav>
@@ -93,6 +100,6 @@ export function AppShell({ children }: { children: ReactNode }) {
 
 function MobileNavigationLink({ href, label, Icon }: { href: string; label: string; Icon: typeof Home }) {
   const pathname = usePathname();
-  const active = href === "/" ? pathname === "/" : pathname.startsWith(href) || (href === "/more" && ["/goals", "/notes", "/analytics", "/faq", "/settings"].some((path) => pathname.startsWith(path)));
+  const active = href === "/" ? pathname === "/" : pathname.startsWith(href) || (href === "/more" && ["/goals", "/habits", "/notes", "/analytics", "/faq", "/settings"].some((path) => pathname.startsWith(path)));
   return <Link href={href} className={`mobile-nav-link ${active ? "active" : ""}`}><Icon size={20} /><span>{label}</span></Link>;
 }

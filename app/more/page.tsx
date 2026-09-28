@@ -1,10 +1,11 @@
 "use client";
 import Link from "next/link";
-import { BarChart3, ChevronRight, CircleHelp, Goal, NotebookPen, Settings } from "lucide-react";
+import { BarChart3, ChevronRight, CircleHelp, Goal, NotebookPen, Repeat2, Settings } from "lucide-react";
 import { PageTransition } from "@/components/page-transition";
 
 const items = [
   { href: "/goals", title: "Цели", text: "Прогресс по личным и финансовым целям", icon: Goal },
+  { href: "/habits", title: "Привычки", text: "Ежедневный и недельный трекер привычек", icon: Repeat2 },
   { href: "/notes", title: "Заметки", text: "Идеи и важные записи", icon: NotebookPen },
   { href: "/analytics", title: "Аналитика", text: "Графики и статистика расходов", icon: BarChart3 },
   { href: "/faq", title: "FAQ", text: "Ответы о возможностях и синхронизации", icon: CircleHelp },
